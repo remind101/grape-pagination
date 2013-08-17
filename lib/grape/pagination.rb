@@ -8,7 +8,7 @@ module Grape
     autoload :Extensions,    'grape/pagination/extensions'
     autoload :Helpers,       'grape/pagination/helpers'
     autoload :Paginator,     'grape/pagination/paginator'
-    autoload :Link,          'grape/pagination/link'
+    autoload :LinkHeader,    'grape/pagination/link_header'
 
     def self.configuration
       @configuration ||= Configuration.new

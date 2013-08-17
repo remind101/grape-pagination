@@ -21,7 +21,7 @@ module Grape::Pagination
 
     def paginate
       header TOTAL_HEADER, total
-      header LINK_HEADER, Link.new(request.url).to_rfc5988
+      header LINK_HEADER, LinkHeader.new(request.url, page_params).to_rfc5988
       collection.paginate(page_params)
     end
   
