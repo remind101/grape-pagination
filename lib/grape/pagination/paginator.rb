@@ -21,20 +21,13 @@ module Grape::Pagination
 
     def paginate
       header TOTAL_HEADER, total
+      header LINK_HEADER, Link.new(request.url).to_rfc5988
       collection.paginate(page_params)
     end
   
   private
 
     def_delegators :endpoint, :header, :params, :request
-
-    def query_hash
-      @query_hash ||= Rack::Utils.parse_nested_query(uri.query)
-    end
-
-    def uri
-      @uri ||= URI.parse(request.url)
-    end
 
     def page_params
       @page_params ||= params.slice(:page, :per_page).to_h.symbolize_keys

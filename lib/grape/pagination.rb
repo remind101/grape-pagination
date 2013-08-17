@@ -1,4 +1,5 @@
 require 'grape'
+
 require 'grape/pagination/version'
 
 module Grape
@@ -7,6 +8,7 @@ module Grape
     autoload :Extensions,    'grape/pagination/extensions'
     autoload :Helpers,       'grape/pagination/helpers'
     autoload :Paginator,     'grape/pagination/paginator'
+    autoload :Link,          'grape/pagination/link'
 
     def self.configuration
       @configuration ||= Configuration.new

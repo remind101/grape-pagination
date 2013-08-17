@@ -31,6 +31,7 @@ Which would result in a paginated collection and the following headers set:
 
 ```
 X-Total: 150
+Link: <http://localhost:5000/api/v1/tweets?page=2&per_page=30>; rel="next"
 ```
 
 ## Contributing

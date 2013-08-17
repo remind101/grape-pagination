@@ -7,8 +7,9 @@ describe Grape::Pagination::Paginator do
   subject(:paginator) { described_class.new endpoint, collection }
 
   describe '.paginate' do
-    it 'sets the X-Total header' do
+    it 'sets the headers' do
       endpoint.should_receive(:header).with('X-Total', 4)
+      endpoint.should_receive(:header).with('Link', '<https://localhost:5000/api/v1/tweets?page=2&per_page=30>; rel="next"')
       paginator.paginate
     end
 
