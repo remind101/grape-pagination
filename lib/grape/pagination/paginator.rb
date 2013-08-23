@@ -20,7 +20,6 @@ module Grape::Pagination
     end
 
     def paginate
-      header TOTAL_HEADER, total
       header LINK_HEADER, LinkHeader.new(request.url, page_params).to_rfc5988
       collection.paginate(page_params)
     end
@@ -31,14 +30,6 @@ module Grape::Pagination
 
     def page_params
       @page_params ||= params.slice(:page, :per_page).to_h.symbolize_keys
-    end
-
-    def total
-      options[:total] || total_proc.call(collection)
-    end
-
-    def total_proc
-      options[:total_proc] || configuration.total_proc
     end
 
     def configuration
