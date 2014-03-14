@@ -1,9 +1,9 @@
-module Grape::Pagination
-  module Validations
+module Grape::Validations
+  class PaginationPageValidator < Validator
     def validate_param!(attr_name, params)
-      if attr_name == "page"
-        unless (params[attr_name].is_a?(Integer) && params[attr_name] > 0)
-          raise Grape::Exceptions::Validation, param: @scope.full_name(attr_name), message: "page must be an integer above 0"
+      if attr_name == :page
+        unless params[attr_name].to_i >= 1
+          throw :error, :status => 400, :message => "The page param must have a value of 1 or greater."
         end
       end
     end

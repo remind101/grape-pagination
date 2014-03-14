@@ -6,7 +6,8 @@ module Grape::Pagination
         optional :page,
           type: Integer,
           desc: 'Page offset to fetch.',
-          default: 1
+          default: 1,
+          pagination_page: true
         optional :per_page,
           type: Integer,
           desc: 'Number of results to return per page.',
@@ -15,3 +16,5 @@ module Grape::Pagination
     end
   end
 end
+
+

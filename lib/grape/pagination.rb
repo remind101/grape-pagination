@@ -9,8 +9,8 @@ module Grape
     autoload :Helpers,       'grape/pagination/helpers'
     autoload :Paginator,     'grape/pagination/paginator'
     autoload :LinkHeader,    'grape/pagination/link_header'
-    autoload :Validations,   'grape/validations/validations'
-
+    require 'grape/validations/validations'
+    
     def self.configuration
       @configuration ||= Configuration.new
     end
