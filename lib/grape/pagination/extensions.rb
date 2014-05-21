@@ -1,17 +1,24 @@
 module Grape::Pagination
   module Extensions
     def paginate(options = {})
-      options.reverse_merge!(per_page: 30)
-      params do
-        optional :page,
+      defaults = {
+        page: {
           type: Integer,
-          desc: 'Page offset to fetch.',
-          default: 1,
-          pagination_page: true
-        optional :per_page,
+          desc: 'Page offset to fetch.'
+        },
+        per_page: {
           type: Integer,
           desc: 'Number of results to return per page.',
-          default: options[:per_page]
+          default: 30
+        }
+      }
+
+      options.reverse_merge!(defaults)
+      options[:page].reverse_merge!(pagination_page: true, default: 1) if options[:page][:type] == Integer
+
+      params do
+        optional :page, options[:page]
+        optional :per_page, options[:per_page]
       end
     end
   end
